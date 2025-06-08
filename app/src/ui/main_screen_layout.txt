@@ -1,12 +1,54 @@
-Screen: Main Voice Recorder
+Screen: Main Voice Recorder (Conceptual SwiftUI Layout)
 
-Elements:
-1. Button:
-    - ID: recordButton
-    - Text: "Record Voice Signature"
-    - Action: On press, triggers the `process_voice_signature()` flow.
-    - Feedback: Should visually indicate when recording is active (e.g., change text to "Recording..." or change color).
-2. Text Area/Label:
-    - ID: statusLabel
-    - Text: (Initially empty or "Press Record to start")
-    - Purpose: Displays dynamic feedback messages from the application's core logic to the user. Examples include "Recording...", "Processing...", "Signature Saved!", or various error messages like "Error: Recording failed".
+ViewModel State Properties (Published by MainViewModel):
+- statusMessage: String (e.g., "Press Record...", "Recording...", "Saved!", "Error...")
+- recordButtonTitle: String (e.g., "Record", "Recording...", "Try Again")
+- isRecordingActive: Bool (to show a visual recording indicator, e.g., change button style or show mic icon)
+- isLoading: Bool (to show a ProgressView during processing)
+- isButtonEnabled: Bool
+
+UI Elements (Conceptual for ContentView.swift):
+1. Text Element (for statusMessage):
+   - Displays: `viewModel.statusMessage`
+   - Style: Adapts based on success/error if desired.
+
+2. Button Element (for recording):
+   - Text: `viewModel.recordButtonTitle`
+   - Action: Calls `viewModel.handleRecordButtonTap()`
+   - Disabled: `!viewModel.isButtonEnabled`
+   - Visuals: May change background or show an icon if `viewModel.isRecordingActive` is true.
+
+3. ProgressView Element (for loading indicator):
+   - Visibility: Shown if `viewModel.isLoading` is true.
+
+State-Driven UI Changes:
+- Idle State:
+    - statusMessage: "Press Record to Start"
+    - recordButtonTitle: "Record Voice Signature"
+    - isButtonEnabled: true
+    - isRecordingActive: false
+    - isLoading: false
+- Recording State:
+    - statusMessage: "Recording (2s)..." (could include a live timer)
+    - recordButtonTitle: "Recording..." (or icon)
+    - isButtonEnabled: false
+    - isRecordingActive: true
+    - isLoading: false
+- Processing State:
+    - statusMessage: "Processing Signature..."
+    - recordButtonTitle: "Processing..." (or disabled)
+    - isButtonEnabled: false
+    - isRecordingActive: false
+    - isLoading: true
+- Success State:
+    - statusMessage: "Signature Saved!"
+    - recordButtonTitle: "Record Another"
+    - isButtonEnabled: true
+    - isRecordingActive: false
+    - isLoading: false
+- Error State (e.g., "Error: Mic permission needed"):
+    - statusMessage: (The specific error message)
+    - recordButtonTitle: "Try Again"
+    - isButtonEnabled: true
+    - isRecordingActive: false
+    - isLoading: false
