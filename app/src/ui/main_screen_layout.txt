@@ -1,0 +1,12 @@
+Screen: Main Voice Recorder
+
+Elements:
+1. Button:
+    - ID: recordButton
+    - Text: "Record Voice Signature"
+    - Action: On press, triggers the `process_voice_signature()` flow.
+    - Feedback: Should visually indicate when recording is active (e.g., change text to "Recording..." or change color).
+2. Text Area/Label:
+    - ID: statusLabel
+    - Text: (Initially empty or "Press Record to start")
+    - Purpose: Displays dynamic feedback messages from the application's core logic to the user. Examples include "Recording...", "Processing...", "Signature Saved!", or various error messages like "Error: Recording failed".

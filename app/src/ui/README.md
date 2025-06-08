@@ -1,0 +1,1 @@
+This directory will house the UI components of the application. Actual implementation will require using the chosen mobile framework's UI tools (e.g., React Native components, Flutter widgets, XML layouts for Android, Storyboards/SwiftUI for iOS). `main_screen_layout.txt` provides a textual mock-up of the main screen's desired elements and behavior.

@@ -1,0 +1,1 @@
+This module is responsible for audio processing, specifically Mel Cepstrum calculation. A library like Librosa (for Python) or a suitable equivalent for the chosen mobile development framework needs to be integrated here. The `cepstrum.py` file contains a placeholder for this logic.

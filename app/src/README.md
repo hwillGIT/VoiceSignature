@@ -1,0 +1,1 @@
+This directory contains the core application logic, orchestrating interactions between UI, audio processing, and database modules. `main_flow.py` (or equivalent) will house the central control flow for processes like voice signature creation.

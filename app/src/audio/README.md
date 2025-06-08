@@ -1,0 +1,1 @@
+This module is responsible for audio recording. Platform-specific libraries for microphone access and recording need to be integrated here. The `recorder.py` file contains a placeholder for the recording logic.

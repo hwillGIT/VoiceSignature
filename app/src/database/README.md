@@ -1,0 +1,1 @@
+This module handles local database operations. A specific database solution (e.g., SQLite, Realm) needs to be selected and integrated. The `db_handler.py` file contains placeholders for database initialization and signature storage/retrieval logic. Table schemas for storing voice signatures also need to be defined.
