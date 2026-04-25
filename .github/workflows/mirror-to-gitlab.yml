@@ -1,26 +1,17 @@
 name: Mirror to GitLab
-
 on:
   push:
-    branches: ['**']
-    tags: ['**']
-  workflow_dispatch:
+    branches: ["**"]
+  delete: {}
 
 jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout (full history)
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Push to GitLab
-        env:
-          GITLAB_PAT: ${{ secrets.GITLAB_PAT }}
+      - name: Push mirror to GitLab
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote add gitlab https://oauth2:${GITLAB_PAT}@gitlab.com/hubert.williams/VoiceSignature.git
-          git push gitlab --all --force
-          git push gitlab --tags --force
+          git remote add gitlab https://oauth2:${{ secrets.GITLAB_TOKEN }}@gitlab.com/hubert.williams/${{ github.event.repository.name }}.git
+          git push --mirror gitlab
